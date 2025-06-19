@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-stocks
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-stocks
+  template:
+    metadata:
+      labels:
+        app: arcadia-stocks
+    spec:
+      containers:
+        - name: arcadia-stocks
+          image: sorinboiaf5/arcadia-stocks@sha256:8a91f9773884ea4d381482d3d26f8102d7a7d28d855adb1f8e0192207c902bed
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WEBPORT
+              value: "80"
+          ports:
+            - containerPort: 80
+          lifecycle:
+            restartPolicy: Always
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /healthz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-stocks
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: arcadia-stocks

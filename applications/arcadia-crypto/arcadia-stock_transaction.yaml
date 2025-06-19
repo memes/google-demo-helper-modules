@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-stock-transaction
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-stock-transaction
+  template:
+    metadata:
+      labels:
+        app: arcadia-stock-transaction
+    spec:
+      containers:
+        - name: arcadia-stock-transaction
+          # yamllint disable-line rule:line-length
+          image: sorinboiaf5/arcadia-stock_transaction@sha256:264b086aae2be23054011722079768ab37a47c74a22a2d21890e88217c9c8370
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WEBPORT
+              value: "80"
+            - name: DB
+              value: arcadia-db
+            - name: USERSAPIHOST
+              value: arcadia-users
+            - name: STOCKSAPIHOST
+              value: arcadia-stocks
+          ports:
+            - containerPort: 80
+          lifecycle:
+            restartPolicy: Always
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /healthz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-stock-transaction
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: arcadia-stock-transaction

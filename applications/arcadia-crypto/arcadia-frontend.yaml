@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-frontend
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-frontend
+  template:
+    metadata:
+      labels:
+        app: arcadia-frontend
+    spec:
+      containers:
+        - name: arcadia-frontend
+          image: sorinboiaf5/arcadia-frontend@sha256:c679946c9e7613fe16f33ffcdef66dce5b8b74a6aaa569ac0ca36f81f76113d4
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-frontend
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: arcadia-frontend

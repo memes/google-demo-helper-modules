@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-ai
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-ai
+  template:
+    metadata:
+      labels:
+        app: arcadia-ai
+    spec:
+      containers:
+        - name: arcadia-ai
+          image: sorinboiaf5/arcadia-ai@sha256:5402a2939ca173bd0b99953062615d17db37bc426b7384afd8278fd4ca74adf0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WEBPORT
+              value: "80"
+            - name: USERSAPIHOST
+              value: arcadia-users
+            - name: AI_RAG
+              value: arcadia-ai-rag
+            - name: LLM
+              value: arcadia-llm:11434
+            - name: LLMMODEL
+              value: llama3.1:8b
+          ports:
+            - containerPort: 80
+          lifecycle:
+            restartPolicy: Always
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /healthz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-ai
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: arcadia-ai

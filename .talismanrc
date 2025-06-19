@@ -1,4 +1,26 @@
 # spell-checker: disable
 ---
 version: "1.0"
-fileignoreconfig: []
+fileignoreconfig:
+- filename: applications/arcadia-crypto/Kptfile
+  checksum: 494e1c34a9da807aaaa38dbfe1cd3a9aad4405dfd42da1047538e791e8361110
+- filename: applications/arcadia-crypto/arcadia-ai-rag.yaml
+  checksum: 70a2ea008d8583d3618ce26b8720313856ca4f5e822fdc072e41b6fbf11c9c95
+- filename: applications/arcadia-crypto/arcadia-ai.yaml
+  checksum: e488b84d159505818865244dcc340aacd5fb720a699b85aa854a7c52c5f36029
+- filename: applications/arcadia-crypto/arcadia-db.yaml
+  checksum: 0722e23a2d983bccbbc38a5244d3dc969542f85e901d3cee79d5e857d23724c9
+- filename: applications/arcadia-crypto/arcadia-frontend.yaml
+  checksum: a56f42037ee3187372efb9ea16c36aea52ad4b204e669ddbf54b452a3df7230c
+- filename: applications/arcadia-crypto/arcadia-llm.yaml
+  checksum: 61bbfe6552959b504af322e3f58abae46aacb5ee2d468e1c237d8c0204da7f7c
+- filename: applications/arcadia-crypto/arcadia-login.yaml
+  checksum: a37c38a3caef0517124838e8533d859b6114ffd97644048acd6f32bc006fd130
+- filename: applications/arcadia-crypto/arcadia-stock_transaction.yaml
+  checksum: cd4eb123d14384d58be28212eb60a0cb0ac49e7ad0a688efeccbc555552e22ca
+- filename: applications/arcadia-crypto/arcadia-stocks.yaml
+  checksum: 7cfd2466bfca701713b513848724276c40eb383421454bce07fb2268c2618e2b
+- filename: applications/arcadia-crypto/arcadia-users.yaml
+  checksum: 182e6893c6002aa1f44dbd51ee08da3d02e9eb9f0480117ba74acbb6c1246da5
+- filename: release-please-config.json
+  checksum: 4a068595dd62b49b9548d1ecdfeec149209a5b47a060572b2f36831aca73ce57

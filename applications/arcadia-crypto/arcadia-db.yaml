@@ -1,0 +1,104 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: arcadia-db-seed
+  namespace: arcadia-crypto
+data:
+  mongo-init.js: |-
+    const usersFile = process.env.USERS_FILE || '/docker-entrypoint-initdb.d/users.json'
+    const users = JSON.parse(fs.readFileSync(usersFile, 'utf-8'))
+    db.createCollection('users')
+    db.users.createIndex({ accountId: 1 }, { unique: true })
+    db.users.insertMany(users)
+  users.json: |-
+    [
+      {
+        "accountId" : "47808892",
+        "name" : "Sorin Boiangiu",
+        "email" : "sorin@nginx.com",
+        "cash" : 5902.248,
+        "password" : "nginx",
+        "stocks" : {
+          "btc" : 3.1,
+          "eth" : 3.5,
+          "ltc" : 40.1
+        },
+        "picture" : "default"
+      },
+      {
+        "accountId" : "85408892",
+        "name" : "Satoshi Nakamoto",
+        "email" : "satoshi@bitcoin.com",
+        "cash" : 5902.248,
+        "password" : "bitcoin",
+        "stocks" : {
+            "btc" : 3.1,
+            "eth" : 3.5,
+            "ltc" : 40.1
+        },
+        "picture" : "default"
+      },
+      {
+        "accountId" : "2658892",
+        "name" : "Big Trader",
+        "email" : "trader@gmail.com",
+        "cash" : 5902.248,
+        "password" : "123456",
+        "stocks" : {
+            "btc" : 3.1,
+            "eth" : 3.5,
+            "ltc" : 40.1
+        },
+        "picture" : "default"
+      }
+    ]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-db
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-db
+  template:
+    metadata:
+      labels:
+        app: arcadia-db
+    spec:
+      containers:
+        - name: arcadia-db
+          image: mondo@sha256:1697f35db2404e7ca87650fee7e5aab4188d2c2f3f0adbe211d060ec9b5799e8
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: arcadia-db
+            - name: USERS_FILE
+              value: /docker-entrypoint-initdb.d/users.json
+          ports:
+            - name: mongodb-port
+              containerPort: 27017
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /docker-entrypoint-initdb.d
+              name: arcadia-db-seed
+      volumes:
+        - name: arcadia-db-seed
+          configMap:
+            name: arcadia-db-seed
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-db
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - name: mongodb
+      port: 27017
+      targetPort: 27017
+      protocol: TCP
+  selector:
+    app: arcadia-db

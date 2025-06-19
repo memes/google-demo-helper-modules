@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-users
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-users
+  template:
+    metadata:
+      labels:
+        app: arcadia-users
+    spec:
+      containers:
+        - name: arcadia-users
+          image: sorinboiaf5/arcadia-users@sha256:de0e549c404c12954cdb871d3dae5204637e1f02e2e8dacab2a691b094263212
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WEBPORT
+              value: "80"
+            - name: DB
+              value: arcadia-db
+          ports:
+            - containerPort: 80
+          lifecycle:
+            restartPolicy: Always
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /healthz
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-users
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: arcadia-users

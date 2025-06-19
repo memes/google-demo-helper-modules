@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-ai-rag
+  namespace: arcadia-crypto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arcadia-ai-rag
+  template:
+    metadata:
+      labels:
+        app: arcadia-ai-rag
+    spec:
+      containers:
+        - name: arcadia-ai-rag
+          image: sorinboiaf5/arcadia-ai-rag@sha256:95aa4543cf2ac375d08481cce50360fda4aa0d8a70365ec3e92d7afe7e454fa2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: WEBPORT
+              value: "80"
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arcadia-ai-rag
+  namespace: arcadia-crypto
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: arcadia-ai-rag
