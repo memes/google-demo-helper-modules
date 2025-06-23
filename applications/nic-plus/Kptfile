@@ -18,8 +18,6 @@ pipeline:
       configMap:
         name: nginx-plus-ingress
         newName: private-registry.nginx.com/nginx-ic/nginx-plus-ingress
-        digest: sha256:0147919638764a9ea6171080d9758c65ee3a5b48fda33da82dfb48567e92429c
+        tag: 5.0.0
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
-      configMap:
-        skip_kinds: CustomResourceDefinition
