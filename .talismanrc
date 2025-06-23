@@ -24,3 +24,5 @@ fileignoreconfig:
   checksum: 182e6893c6002aa1f44dbd51ee08da3d02e9eb9f0480117ba74acbb6c1246da5
 - filename: release-please-config.json
   checksum: 4a068595dd62b49b9548d1ecdfeec149209a5b47a060572b2f36831aca73ce57
+- filename: applications/ollama/Kptfile
+  checksum: 54a54345ce7c1f95d6ef5b442e20b0af195cde64f7df0e353a4cb21840dcbc26

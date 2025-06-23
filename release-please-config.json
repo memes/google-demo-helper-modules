@@ -5,6 +5,7 @@
   "bump-patch-for-minor-pre-major": false,
   "bootstrap-sha": "1b45a406fb74c2266a7e1a4e5de59c4ca98b609b",
   "packages": {
-    "applications/arcadia-crypto": {}
+    "applications/arcadia-crypto": {},
+    "applications/ollama": {}
   }
 }

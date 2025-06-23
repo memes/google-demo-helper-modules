@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ollama-models
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+    limits:
+      storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-accelerator: "nvidia-tesla-t4"  # kpt-set: ${gpu_type}
+      containers:
+        - name: ollama
+          image: ollama/ollama:0.6.4
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: OLLAMA_DEBUG
+              value: "1"
+          resources:
+            limits:
+              nvidia.com/gpu: 1  # kpt-set: ${gpu_count}
+            requests:
+              memory: "16384Mi"
+              cpu: "4000m"
+          ports:
+            - containerPort: 11434
+              protocol: TCP
+          volumeMounts:
+            - name: ollama-models
+              mountPath: /root/.ollama/models
+      volumes:
+        - name: ollama-models
+          persistentVolumeClaim:
+            claimName: ollama-models
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama
+spec:
+  ports:
+    - port: 11434
+      targetPort: 11434
+      protocol: TCP
+      name: ollama
+  selector:
+    app: ollama
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ollama-load-model
+spec:
+  ttlSecondsAfterFinished: 200
+  template:
+    spec:
+      containers:
+        - name: ollama-load-model
+          image: ollama/ollama:0.6.4
+          command:
+            - ollama
+            - pull
+            - llama3.1:8b
+          env:
+            - name: OLLAMA_HOST
+              value: ollama:11434
+      restartPolicy: Never
