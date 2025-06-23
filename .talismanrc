@@ -26,3 +26,11 @@ fileignoreconfig:
   checksum: 4a068595dd62b49b9548d1ecdfeec149209a5b47a060572b2f36831aca73ce57
 - filename: applications/ollama/Kptfile
   checksum: 54a54345ce7c1f95d6ef5b442e20b0af195cde64f7df0e353a4cb21840dcbc26
+- filename: applications/nic-oss/deployments/Kptfile
+  checksum: 8522198d0703f6e6e5a8e36e9fe7b1bed751b6cd3cb8b16ab6daf835d17213f8
+- filename: applications/nic-oss/config/Kptfile
+  checksum: 42bffe39fbc5dbbfb400059fa8ba9d4652c33dff9dc7ccd7959d24916f2be24a
+- filename: applications/nic-oss/Kptfile
+  checksum: 6b66015d8b80d74c7af327fdd5e2459c662a82af6f9410ed860b9b19dfd7e1f0
+- filename: applications/nic-oss/deployments/deployment/nginx-ingress.yaml
+  checksum: 39c5a88631e61313185ef1ad5bf4a19836ae6b36d26af584f1aca7f1e6f09cab
