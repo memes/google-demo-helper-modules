@@ -3,9 +3,8 @@ extends: default
 
 # Upstream NGINX manifests shouldn't be linted
 ignore:
-  - applications/nic-oss/config/**/*.yaml
+  - applications/nic-crds/upstream/bases/*.yaml
   - applications/nic-oss/deployments/**/*.yaml
-  - applications/nic-plus/config/**/*.yaml
   - applications/nic-plus/deployments/**/*.yaml
 
 rules:

@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata: # kpt-merge: /globalconfigurations.k8s.nginx.org
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.1
-    internal.kpt.dev/upstream-identifier: apiextensions.k8s.io|CustomResourceDefinition|default|globalconfigurations.k8s.nginx.org
+    internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|globalconfigurations.k8s.nginx.org'
   name: globalconfigurations.k8s.nginx.org
 spec:
   group: k8s.nginx.org
@@ -63,8 +63,3 @@ spec:
         type: object
     served: true
     storage: true
-  conversion:
-    webhook:
-      clientConfig:
-        service:
-          namespace: nginx-ingress
