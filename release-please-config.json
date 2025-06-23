@@ -7,6 +7,7 @@
   "packages": {
     "applications/arcadia-crypto": {},
     "applications/nic-oss": {},
+    "applications/nic-plus": {},
     "applications/ollama": {}
   }
 }

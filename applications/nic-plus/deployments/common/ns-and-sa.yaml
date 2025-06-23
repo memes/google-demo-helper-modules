@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata: # kpt-merge: /nginx-ingress
+  name: nginx-ingress
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Namespace|default|nginx-ingress'
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: nginx-ingress/nginx-ingress
+  name: nginx-ingress
+  namespace: nginx-ingress
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|nginx-ingress|nginx-ingress'
+#automountServiceAccountToken: false

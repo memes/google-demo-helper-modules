@@ -5,6 +5,8 @@ extends: default
 ignore:
   - applications/nic-oss/config/**/*.yaml
   - applications/nic-oss/deployments/**/*.yaml
+  - applications/nic-plus/config/**/*.yaml
+  - applications/nic-plus/deployments/**/*.yaml
 
 rules:
   line-length:
