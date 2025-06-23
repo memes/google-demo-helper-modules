@@ -10,7 +10,7 @@ pipeline:
   mutators:
     - image: gcr.io/kpt-fn/set-namespace:v0.4.1
       configMap:
-        name: nginx-ingress
+        namespace: nginx-ingress
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
         make-default-ingress-class: "true"
