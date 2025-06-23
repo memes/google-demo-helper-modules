@@ -5,7 +5,7 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 info:
-  description: sample description
+  description: NGINX+ Ingress Controller for GKE
 pipeline:
   mutators:
     - image: gcr.io/kpt-fn/set-namespace:v0.4.1
@@ -21,3 +21,5 @@ pipeline:
         tag: 5.0.0
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
+      configMap:
+        skip_kinds: ExternalSecret,SecretStore

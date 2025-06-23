@@ -39,10 +39,12 @@ fileignoreconfig:
 - filename: applications/nic-plus/config/Kptfile
   checksum: 2aa5ecc7bd8f1a8d8196ac0fcf001966c17ee1d6bbf136ffbc355e3b4af71a8e
 - filename: applications/nic-plus/Kptfile
-  checksum: 358db741f433f54962651d9496eee6b90f2378fa68e710a30f7dd4adc69eab5a
+  checksum: a8390e94accd803431147ec4e3ca7ddc4ec4a8c999aa1826bdb3a016c4aecce3
 - filename: applications/nic-plus/deployments/common/plus-mgmt-configmap.yaml
   checksum: b128b7719456630e88e671ed87fc460ee615267d3e068a167e23a5153405efac
 - filename: applications/nic-plus/deployments/deployment/nginx-plus-ingress.yaml
   checksum: cc690cf4cd199feb956c6c95b8348f2a738946d86708f6f573b41592e698208d
 - filename: applications/nic-crds/upstream/Kptfile
   checksum: eb9c8d21ad41ad1e2a32f701cc3cdb4e7ed81d190f43397f0c8bdee747b068de
+- filename: applications/nic-plus/nginx-jwt-secret.yaml
+  checksum: 25b942b8c9b66cd915fdb32e0e373388afaeb05e325bc2ef36aafe2f10145824
