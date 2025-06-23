@@ -29,7 +29,7 @@ spec:
         app: arcadia-llm
     spec:
       nodeSelector:
-        cloud.google.com/gke-accelerator: nvidia-tesla-t4
+        cloud.google.com/gke-accelerator: nvidia-tesla-t4  # kpt-set: ${gpu_type}
       containers:
         - name: arcadia-llm
           image: ollama/ollama@sha256:476b956cbe76f22494f08400757ba302fd8ab6573965c09f1e1a66b2a7b0eb77
@@ -39,7 +39,7 @@ spec:
               value: "1"
           resources:
             limits:
-              nvidia.com/gpu: 1
+              nvidia.com/gpu: 1  # kpt-set: ${gpu_count}
             requests:
               memory: 16384Mi
               cpu: 4000m
