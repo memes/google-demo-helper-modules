@@ -7,12 +7,12 @@ upstream:
   git:
     repo: https://github.com/nginx/kubernetes-ingress
     directory: /config/crd
-    ref: v4.0.1
+    ref: v5.0.0
   updateStrategy: resource-merge
 upstreamLock:
   type: git
   git:
     repo: https://github.com/nginx/kubernetes-ingress
     directory: /config/crd
-    ref: v4.0.1
-    commit: 63adba503bb24ebbe73e07192e223a14c1fb4f7e
+    ref: v5.0.0
+    commit: eefb7cd85c17fc5f069b8fba7467ae57dc47aeb5

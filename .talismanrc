@@ -44,3 +44,5 @@ fileignoreconfig:
   checksum: b128b7719456630e88e671ed87fc460ee615267d3e068a167e23a5153405efac
 - filename: applications/nic-plus/deployments/deployment/nginx-plus-ingress.yaml
   checksum: cc690cf4cd199feb956c6c95b8348f2a738946d86708f6f573b41592e698208d
+- filename: applications/nic-crds/upstream/Kptfile
+  checksum: eb9c8d21ad41ad1e2a32f701cc3cdb4e7ed81d190f43397f0c8bdee747b068de

@@ -4,7 +4,6 @@ metadata: # kpt-merge: /apdoslogconfs.appprotectdos.f5.com
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
     internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|apdoslogconfs.appprotectdos.f5.com'
-  creationTimestamp: null
   name: apdoslogconfs.appprotectdos.f5.com
 spec:
   group: appprotectdos.f5.com
