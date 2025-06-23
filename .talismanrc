@@ -27,7 +27,7 @@ fileignoreconfig:
 - filename: applications/ollama/Kptfile
   checksum: 54a54345ce7c1f95d6ef5b442e20b0af195cde64f7df0e353a4cb21840dcbc26
 - filename: applications/nic-oss/deployments/Kptfile
-  checksum: 8522198d0703f6e6e5a8e36e9fe7b1bed751b6cd3cb8b16ab6daf835d17213f8
+  checksum: ea14cbfe9e99db8a7f1e75d00ffce87ed7b56ec0a446c0db2c17e626da0df27b
 - filename: applications/nic-oss/config/Kptfile
   checksum: 42bffe39fbc5dbbfb400059fa8ba9d4652c33dff9dc7ccd7959d24916f2be24a
 - filename: applications/nic-oss/Kptfile
