@@ -1,0 +1,18 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: upstream
+upstream:
+  type: git
+  git:
+    repo: https://github.com/GoogleCloudPlatform/otlp-k8s-ingest
+    directory: /k8s/base
+    ref: v0.4.0
+  updateStrategy: resource-merge
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/GoogleCloudPlatform/otlp-k8s-ingest
+    directory: /k8s/base
+    ref: v0.4.0
+    commit: e1c6b93c137838e4c55719f49d4dec8ceb401faf

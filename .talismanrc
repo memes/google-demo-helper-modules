@@ -48,3 +48,9 @@ fileignoreconfig:
   checksum: eb9c8d21ad41ad1e2a32f701cc3cdb4e7ed81d190f43397f0c8bdee747b068de
 - filename: applications/nic-plus/nginx-jwt-secret.yaml
   checksum: 25b942b8c9b66cd915fdb32e0e373388afaeb05e325bc2ef36aafe2f10145824
+- filename: applications/gcp-otlp-k8s-ingest/upstream/Kptfile
+  checksum: 86ee600c2e195926cc46ae3f5aab2425f9d1b30768891ef0343467e379d65158
+- filename: applications/gcp-otlp-k8s-ingest/upstream/4_deployment.yaml
+  checksum: 6781ca93a486280a59560ced1dd50e0a40f61da7ddba8e7daf34015e3b45acb3
+- filename: applications/gcp-otlp-k8s-ingest/upstream/1_configmap.yaml
+  checksum: 0226dafa02871e1383f90aeda774c0e0e81599a28e5fad06a677a2a99192bc1f

@@ -6,6 +6,7 @@
   "bootstrap-sha": "1b45a406fb74c2266a7e1a4e5de59c4ca98b609b",
   "packages": {
     "applications/arcadia-crypto": {},
+    "applications/gcp-otlp-k8s-ingest": {},
     "applications/nic-crds": {},
     "applications/nic-oss": {},
     "applications/nic-plus": {},
