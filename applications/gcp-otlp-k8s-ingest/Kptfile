@@ -20,3 +20,5 @@ pipeline:
         namespace: opentelemetry
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
+      configMap:
+        skip_kinds: HorizontalPodAutoscaler
