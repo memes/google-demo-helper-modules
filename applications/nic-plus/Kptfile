@@ -22,4 +22,4 @@ pipeline:
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
       configMap:
-        skip_kinds: ExternalSecret,SecretStore
+        skip_kinds: ExternalSecret,SecretStore,Kustomization

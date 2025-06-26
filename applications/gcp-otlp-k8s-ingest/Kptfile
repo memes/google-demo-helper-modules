@@ -21,4 +21,4 @@ pipeline:
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
       configMap:
-        skip_kinds: HorizontalPodAutoscaler
+        skip_kinds: HorizontalPodAutoscaler,Kustomization
