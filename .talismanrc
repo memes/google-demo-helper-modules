@@ -45,14 +45,18 @@ fileignoreconfig:
 - filename: applications/nic-plus/deployments/deployment/nginx-plus-ingress.yaml
   checksum: cc690cf4cd199feb956c6c95b8348f2a738946d86708f6f573b41592e698208d
 - filename: applications/nic-crds/upstream/Kptfile
-  checksum: eb9c8d21ad41ad1e2a32f701cc3cdb4e7ed81d190f43397f0c8bdee747b068de
+  checksum: a11e241464736a39e2ae55b5941bce2a812baa8c649943710d08c81f65f26031
 - filename: applications/nic-plus/nginx-jwt-secret.yaml
   checksum: 25b942b8c9b66cd915fdb32e0e373388afaeb05e325bc2ef36aafe2f10145824
 - filename: applications/gcp-otlp-k8s-ingest/upstream/Kptfile
-  checksum: 86ee600c2e195926cc46ae3f5aab2425f9d1b30768891ef0343467e379d65158
+  checksum: dd1f817535dbe540012de7e8db725f4c3cd628833dd19f9fbc8b3e10ac36c443
 - filename: applications/gcp-otlp-k8s-ingest/upstream/4_deployment.yaml
   checksum: 6781ca93a486280a59560ced1dd50e0a40f61da7ddba8e7daf34015e3b45acb3
 - filename: applications/gcp-otlp-k8s-ingest/upstream/1_configmap.yaml
   checksum: 0226dafa02871e1383f90aeda774c0e0e81599a28e5fad06a677a2a99192bc1f
 - filename: applications/nic-crds-nap/upstream/Kptfile
-  checksum: 28149f4a5b947626867c4e50c757c9460a619574c2dbc0a66d823516166335d4
+  checksum: 2f19b97e2c6775611d88d1a60ab7333f3b27a84813981165d9d667e052d77286
+- filename: applications/nic-oss/upstream/Kptfile
+  checksum: 592990769075a562aacb60f542d1a18cb84176f2aec1b7a5a7de2a6ca3249240
+- filename: applications/nic-plus/upstream/Kptfile
+  checksum: 2c2f00075eec3d2d094ade88dced0d200194d21669e01be1ac779f850becaeb9

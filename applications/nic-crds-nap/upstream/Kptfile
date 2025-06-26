@@ -4,17 +4,17 @@ metadata:
   name: upstream
   annotations:
     config.kubernetes.io/local-config: "true"
-upstream:
-  type: git
-  git:
-    repo: https://github.com/nginx/kubernetes-ingress
-    directory: /config/crd
-    ref: v5.0.0
-  updateStrategy: resource-merge
-upstreamLock:
-  type: git
-  git:
-    repo: https://github.com/nginx/kubernetes-ingress
-    directory: /config/crd
-    ref: v5.0.0
-    commit: eefb7cd85c17fc5f069b8fba7467ae57dc47aeb5
+# upstream:
+#   type: git
+#   git:
+#     repo: https://github.com/nginx/kubernetes-ingress
+#     directory: /config/crd
+#     ref: v5.0.0
+#   updateStrategy: resource-merge
+# upstreamLock:
+#   type: git
+#   git:
+#     repo: https://github.com/nginx/kubernetes-ingress
+#     directory: /config/crd
+#     ref: v5.0.0
+#     commit: eefb7cd85c17fc5f069b8fba7467ae57dc47aeb5
