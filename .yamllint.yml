@@ -14,3 +14,7 @@ rules:
     ignore: |
       applications/**/*.yaml
       applications/**/Kptfile
+  comments:
+    # Kpt will reformat inline kpt-set to have a single space before comment
+    ignore: |
+      applications/ollama/ollama.yaml

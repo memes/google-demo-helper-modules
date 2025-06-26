@@ -5,8 +5,7 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 info:
-  description: |-
-    Deploys an Ollama container and service, with an asynchronous pull of model.
+  description: Deploys an Ollama container and service, with an asynchronous pull of model.
   emails:
     - m.emes@f5.com
   license: Apache-2.0
@@ -19,12 +18,14 @@ pipeline:
       configPath: package-context.yaml
     - image: gcr.io/kpt-fn/apply-setters:v0.2.0
       configMap:
-        gpu_count: 1
+        gpu_count: "1"
         gpu_type: nvidia-tesla-t4
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: ollama/ollama
         newName: ollama/ollama
-        digest: sha256:476b956cbe76f22494f08400757ba302fd8ab6573965c09f1e1a66b2a7b0eb77
+        tag: 0.6.4
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
+      configMap:
+        skip_kinds: Kustomization

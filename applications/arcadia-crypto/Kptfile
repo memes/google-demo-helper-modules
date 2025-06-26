@@ -30,47 +30,47 @@ pipeline:
       configMap:
         name: mongo
         newName: mongo
-        digest: sha256:1697f35db2404e7ca87650fee7e5aab4188d2c2f3f0adbe211d060ec9b5799e8
+        tag: 8.0.6-noble
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: ollama/ollama
         newName: ollama/ollama
-        digest: sha256:476b956cbe76f22494f08400757ba302fd8ab6573965c09f1e1a66b2a7b0eb77
+        tag: 0.6.4
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-ai
         newName: sorinboiaf5/arcadia-ai
-        digest: sha256:5402a2939ca173bd0b99953062615d17db37bc426b7384afd8278fd4ca74adf0
+        tag: v1
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-ai-rag
         newName: sorinboiaf5/arcadia-ai-rag
-        digest: sha256:95aa4543cf2ac375d08481cce50360fda4aa0d8a70365ec3e92d7afe7e454fa2
+        tag: v1
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-frontend
         newName: sorinboiaf5/arcadia-frontend
-        digest: sha256:c679946c9e7613fe16f33ffcdef66dce5b8b74a6aaa569ac0ca36f81f76113d4
+        tag: v1
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-login
         newName: sorinboiaf5/arcadia-login
-        digest: sha256:761a1a61b1947f7f3993fbbba50ae2eb53c0d3641fe52292a850aa3885c30dbd
+        tag: v1
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-stock_transaction
         newName: sorinboiaf5/arcadia-stock_transaction
-        digest: sha256:264b086aae2be23054011722079768ab37a47c74a22a2d21890e88217c9c8370
+        tag: v1
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-stocks
         newName: sorinboiaf5/arcadia-stocks
-        digest: sha256:8a91f9773884ea4d381482d3d26f8102d7a7d28d855adb1f8e0192207c902bed
+        tag: v1
     - image: gcr.io/kpt-fn/set-image:v0.1.1
       configMap:
         name: sorinboiaf5/arcadia-users
         newName: sorinboiaf5/arcadia-users
-        digest: sha256:de0e549c404c12954cdb871d3dae5204637e1f02e2e8dacab2a691b094263212
+        tag: v1
   validators:
     - image: gcr.io/kpt-fn/kubeval:v0.3.0
       configMap:

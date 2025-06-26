@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: ollama-models
+  namespace: ollama
 spec:
   resources:
     requests:
@@ -16,6 +17,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ollama
+  namespace: ollama
 spec:
   replicas: 1
   selector:
@@ -27,7 +29,7 @@ spec:
         app: ollama
     spec:
       nodeSelector:
-        cloud.google.com/gke-accelerator: "nvidia-tesla-t4"  # kpt-set: ${gpu_type}
+        cloud.google.com/gke-accelerator: nvidia-tesla-t4 # kpt-set: ${gpu_type}
       containers:
         - name: ollama
           image: ollama/ollama:0.6.4
@@ -37,10 +39,10 @@ spec:
               value: "1"
           resources:
             limits:
-              nvidia.com/gpu: 1  # kpt-set: ${gpu_count}
+              nvidia.com/gpu: 1 # kpt-set: ${gpu_count}
             requests:
-              memory: "16384Mi"
-              cpu: "4000m"
+              memory: 16384Mi
+              cpu: 4000m
           ports:
             - containerPort: 11434
               protocol: TCP
@@ -56,6 +58,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ollama
+  namespace: ollama
 spec:
   ports:
     - port: 11434
@@ -69,6 +72,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: ollama-load-model
+  namespace: ollama
 spec:
   ttlSecondsAfterFinished: 200
   template:
