@@ -8,6 +8,7 @@
     "applications/arcadia-crypto": {},
     "applications/gcp-otlp-k8s-ingest": {},
     "applications/nic-crds": {},
+    "applications/nic-crds-nap": {},
     "applications/nic-oss": {},
     "applications/nic-plus": {},
     "applications/ollama": {}

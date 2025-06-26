@@ -3,10 +3,8 @@ extends: default
 
 # Some upstream manifests shouldn't be linted
 ignore:
-  - applications/nic-crds/upstream/bases/*.yaml
-  - applications/nic-oss/deployments/**/*.yaml
-  - applications/nic-plus/deployments/**/*.yaml
-  - applications/gcp-otlp-k8s-ingest/upstream/**/*.yaml
+  - applications/**/upstream/**/*.yaml
+  - applications/**/upstream/**/*.yml
 
 rules:
   line-length:

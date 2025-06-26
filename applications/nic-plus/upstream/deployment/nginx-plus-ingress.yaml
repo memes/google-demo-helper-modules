@@ -5,7 +5,6 @@ metadata: # kpt-merge: nginx-ingress/nginx-ingress
   namespace: nginx-ingress
   annotations:
     internal.kpt.dev/upstream-identifier: apps|Deployment|nginx-ingress|nginx-ingress
-    config.kubernetes.io/depends-on: apiextensions.k8s.io/CustomResourceDefinition/globalconfigurations.k8s.nginx.org,apiextensions.k8s.io/CustomResourceDefinition/policies.k8s.nginx.org,apiextensions.k8s.io/CustomResourceDefinition/transportservers.k8s.nginx.org,apiextensions.k8s.io/CustomResourceDefinition/virtualserverroutes.k8s.nginx.org,apiextensions.k8s.io/CustomResourceDefinition/virtualservers.k8s.nginx.org
 spec:
   replicas: 1
   selector:
@@ -39,7 +38,7 @@ spec:
           #      - name: nginx-log
           #        emptyDir: {}
       containers:
-      - image: private-registry.nginx.com/nginx-ic/nginx-plus-ingress:5.0.0
+      - image: nginx-plus-ingress:5.0.0
         imagePullPolicy: IfNotPresent
         name: nginx-plus-ingress
         ports:
@@ -68,7 +67,7 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           #          readOnlyRootFilesystem: true
-          runAsUser: 101
+          runAsUser: 101 #nginx
           runAsNonRoot: true
           capabilities:
             drop:

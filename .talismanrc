@@ -54,3 +54,5 @@ fileignoreconfig:
   checksum: 6781ca93a486280a59560ced1dd50e0a40f61da7ddba8e7daf34015e3b45acb3
 - filename: applications/gcp-otlp-k8s-ingest/upstream/1_configmap.yaml
   checksum: 0226dafa02871e1383f90aeda774c0e0e81599a28e5fad06a677a2a99192bc1f
+- filename: applications/nic-crds-nap/upstream/Kptfile
+  checksum: 28149f4a5b947626867c4e50c757c9460a619574c2dbc0a66d823516166335d4
