@@ -4,7 +4,7 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 resources:
-  - upstream/common/na-and-sa.yaml
+  - upstream/common/ns-and-sa.yaml
   - upstream/rbac/rbac.yaml
   - upstream/common/nginx-config.yaml
   - upstream/common/plus-mgmt-configmap.yaml
