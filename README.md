@@ -1,6 +1,6 @@
 # Google Cloud Demo Helpers
 
-![Maintenance](https://img.shields.io/maintenance/yes/2025)
+![Maintenance](https://img.shields.io/maintenance/yes/2026)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 Many of the demos I've presented to customers or deployed for Google Cloud Next have depended on a common set of helper

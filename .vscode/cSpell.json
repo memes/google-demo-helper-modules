@@ -2,20 +2,56 @@
     "version": "0.2",
     "language": "en",
     "words": [
+        "addopts",
+        "apiextensions",
+        "artifactregistry",
         "Boiangiu",
+        "brewz",
+        "cloudsdktool",
+        "cloudtrace",
+        "configmap",
+        "dnsendpoints",
+        "dockerconfigjson",
+        "externaldns",
+        "f5devcentral",
+        "filterwarnings",
         "fluxcd",
+        "gcpsm",
+        "gcrane",
+        "globalconfigurations",
         "INITDB",
         "Kptfile",
+        "kubeconfig",
         "kubeval",
+        "Kustomization",
+        "livez",
+        "localdomain",
+        "mgmt",
         "ollama",
+        "oneshot",
+        "oslogin",
+        "paramiko",
         "preemptible",
-        "Sorin"
+        "prereqs",
+        "pyright",
+        "pytest",
+        "pyyaml",
+        "secretmanager",
+        "Sorin",
+        "testinfra",
+        "tfvar",
+        "tfvars",
+        "transportservers",
+        "venv",
+        "virtualserverroutes",
+        "virtualservers"
     ],
     "flagWords": [
         "hte"
     ],
     "ignorePaths": [
         ".devcontainer/devcontainer.json",
-        ".gitignore"
+        ".gitignore",
+        "uv.lock"
     ]
 }

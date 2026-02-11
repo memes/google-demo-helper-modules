@@ -3,8 +3,8 @@ extends: default
 
 # Some upstream manifests shouldn't be linted
 ignore:
-  - applications/**/upstream/**/*.yaml
-  - applications/**/upstream/**/*.yml
+  - applications/**/upstream*/**/*.yaml
+  - applications/**/upstream*/**/*.yml
 
 rules:
   line-length:

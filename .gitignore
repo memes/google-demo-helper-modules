@@ -13,3 +13,10 @@ terraform.tfstate*
 *.auto.tfvars*
 terraform.tfvars*
 !terraform.tfvars.example
+tests/setup/harness.json
+
+# Ignore python and testing files
+.venv
+__pycache__
+.pytest_cache
+.coverage*

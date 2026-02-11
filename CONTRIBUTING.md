@@ -22,8 +22,8 @@ and other supporting tools included.
    E.g.
 
    ```shell
-   pip install -r requirements-dev.txt
-   pre-commit install --hook-type commit-msg --hook-type pre-commit
+   uv sync --all-extras --all-packages
+   uv run pre-commit install --hook-type commit-msg --hook-type pre-commit
    ```
 
 4. Create a new branch for changes

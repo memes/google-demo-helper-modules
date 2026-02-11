@@ -1,7 +1,7 @@
 {
     "yaml.schemas": {
             "https://json.schemastore.org/github-issue-config.json": ".github/ISSUE_TEMPLATE/config.yml",
-            "https://raw.githubusercontent.com/kptdev/kpt/main/site/reference/schema/kptfile/kptfile.yaml": "Kptfile"
+            "https://raw.githubusercontent.com/kptdev/kpt/main/documentation/content/en/reference/schema/kptfile/kptfile.yaml": "Kptfile"
     },
     "json.schemas": [
         {
@@ -16,5 +16,17 @@
             ],
             "url": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/manifest.json"
         }
-    ]
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnPaste": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        }
+    },
+    "python.languageServer": "None",
+    "python.testing.pytestEnabled": true
 }

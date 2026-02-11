@@ -60,3 +60,5 @@ fileignoreconfig:
   checksum: 592990769075a562aacb60f542d1a18cb84176f2aec1b7a5a7de2a6ca3249240
 - filename: applications/nic-plus/upstream/Kptfile
   checksum: 2c2f00075eec3d2d094ade88dced0d200194d21669e01be1ac779f850becaeb9
+- filename: uv.lock
+  checksum: 0b1d52bfb9e2d59a8a806a8186cae8249cdb8ccdf439fd5c4bf26bc1acb1456d
