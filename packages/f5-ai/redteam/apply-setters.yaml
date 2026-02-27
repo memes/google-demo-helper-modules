@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apply-setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+# spell-checker: disable
+data:
+  # The Secret Manager secret identifier that contains the JSON values for cai-workflows-auth secret.
+  cai-redteam-cai-workflows-auth-secret-id: projects/PROJECT_ID/secrets/SECRET_ID
+  # The Secret Manager secret identifier that contains the JSON values for prefect-server-auth secret.
+  cai-redteam-prefect-server-auth-secret-id: projects/PROJECT_ID/secrets/SECRET_ID
+  # The cai-redteam component interacts with itself, and other F5 AI components through fully-qualified service names;
+  # update these to match the namespace for each component as necessary.
+  cai-moderator-namespace: f5-ai-moderator
+  cai-redteam-namespace: f5-ai-redteam
+  # The upstream helm chart includes KubeAI Model CRD that can be installed as part of this Kpt pipeline, but it is
+  # recommended that a separate action installs the CRD as a pre-requisite to ensure it is available in cluster before
+  # models are declared.
+  cai-redteam-enable-crds: "false"
+  # The name of the KubeAI resoruce profile that will be used for Red Team models.
+  cai-redteam-model-resource-profile: nvidia-gpu-a100-40gb:1
+  # An optional prefix to add to select image paths to pull from private Artifact Registry (or other). E.g. if this
+  # value is 'my-private-repo.example.com/' the kubeai image will be pulled from
+  # 'my-private-repo.example.com/harbor.calypsoai.app/calypsoai/kubeai', etc.
+  f5-ai-private-image-repository-prefix: us-docker.pkg.dev/f5-gcs-4138-sales-cloudnext25/ai-demo-oci/

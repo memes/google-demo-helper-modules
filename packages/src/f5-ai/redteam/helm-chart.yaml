@@ -1,0 +1,135 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: RenderHelmChart
+metadata:
+  name: f5-ai-cai-redteam
+helmCharts:
+  - chartArgs:
+      name: cai-redteam
+      version: 1.14.6
+      repo: oci://harbor.calypsoai.app/calypsoai
+      auth:
+        kind: Secret
+        name: cai-harbor-credentials
+    templateOptions:
+      releaseName: cai-redteam
+      namespace: f5-ai-redteam # kpt-set: ${cai-redteam-namespace}
+      includeCRDs: false # kpt-set: ${cai-redteam-enable-crds}
+      values:
+        valuesInline:
+          cai:
+            workflows:
+              enableHelmHooks: false
+          prefect-server:
+            server:
+              image:
+                repository: prefecthq/prefect # kpt-set: ${f5-ai-private-image-repository-prefix}prefecthq/prefect
+              # If the cai-redteam package is deployed to a namespace other than the default of f5-ai-redteam the next
+              # line will need to change to match.
+              prefectApiUrl: http://prefect-server.f5-ai-redteam.svc.cluster.local:4200/api # kpt-set: http://prefect-server.${cai-redteam-namespace}.svc.cluster.local:4200/api
+          prefect-worker:
+            worker:
+              clusterUid: ""
+              serverApiConfig:
+                # If the cai-redteam package is deployed to a namespace other than the default of f5-ai-redteam the next
+                # line will need to change to match.
+                apiUrl: http://prefect-server.f5-ai-redteam.svc.cluster.local:4200/api # kpt-set: http://prefect-server.${cai-redteam-namespace}.svc.cluster.local:4200/api
+              image:
+                repository: prefecthq/prefect # kpt-set: ${f5-ai-private-image-repository-prefix}prefecthq/prefect
+          cai-workflows:
+            env:
+              # If the cai-redteam package is deployed to a namespace other than the default of f5-ai-redteam the next
+              # line will need to change to match.
+              PREFECT_API_URL: http://prefect-server.f5-ai-redteam.svc.cluster.local:4200/api # kpt-set: http://prefect-server.${cai-redteam-namespace}.svc.cluster.local:4200/api
+              # If the cai-moderator package is deployed to a namespace other than the default of f5-ai-moderator the next
+              # line will need to change to match.
+              CAI_WORKFLOWS_WEBHOOK_URL: http://cai-moderator.f5-ai-moderator.svc.cluster.local:5500/internal/hooks/attack-events # kpt-set: http://cai-moderator.${cai-moderator-namespace}.svc.cluster.local:5500/internal/hooks/attack-events
+            image:
+              repository: harbor.calypsoai.app/calypsoai/cai_workflows # kpt-set: ${f5-ai-private-image-repository-prefix}harbor.calypsoai.app/calypsoai/cai_workflows
+            # NOTE: An imagePullSecret is not needed when pulling from a private GAR repo with access managed through
+            # IAM. Remove if relying on regcreds from upstream chart.
+            imagePullSecrets: []
+          models:
+            cai-mistral-nemo-instruct-2407:
+              env:
+                LD_LIBRARY_PATH: /usr/local/cuda/lib64:/usr/local/nvidia/lib64
+              image: harbor.calypsoai.app/calypsoai/cai-redteam-worker:v1.0.7 # kpt-set: ${f5-ai-private-image-repository-prefix}harbor.calypsoai.app/calypsoai/cai-redteam-worker:v1.0.7
+              resourceProfile: nvidia-gpu-a100-40gb:1 # kpt-set: ${cai-redteam-model-resource-profile}
+          kubeai:
+            crds:
+              enabled: false # kpt-set: ${cai-scanner-enable-crds}
+            # NOTE: An imagePullSecret is not needed when pulling from a private GAR repo with access managed through
+            # IAM. Remove if relying on regcreds from upstream chart.
+            imagePullSecrets: []
+            image:
+              repository: harbor.calypsoai.app/calypsoai/kubeai # kpt-set: ${f5-ai-private-image-repository-prefix}harbor.calypsoai.app/calypsoai/kubeai
+            modelLoading:
+              image: harbor.calypsoai.app/calypsoai/kubeai-model-loader:v0.14.0 # kpt-set: ${f5-ai-private-image-repository-prefix}harbor.calypsoai.app/calypsoai/kubeai-model-loader:v0.14.0
+            # The values below are not directly exposed in upstream cai-scanner, but are in the included kubeai
+            # sub-chart and need to be changed if using a private registry.
+            modelServers:
+              VLLM:
+                images:
+                  default: vllm/vllm-openai:v0.10.2 # kpt-set: ${f5-ai-private-image-repository-prefix}vllm/vllm-openai:v0.10.2
+                  nvidia-gpu: vllm/vllm-openai:v0.10.2 # kpt-set: ${f5-ai-private-image-repository-prefix}vllm/vllm-openai:v0.10.2
+                  google-tpu: vllm-tpu:23194d83e8f2a6783b0d8c275f5f8a22faab9aec # kpt-set: ${f5-ai-private-image-repository-prefix}vllm-tpu:23194d83e8f2a6783b0d8c275f5f8a22faab9aec
+                  gh200: vllm/vllm-openai:v0.10.2 # kpt-set: ${f5-ai-private-image-repository-prefix}vllm/vllm-openai:v0.10.2
+            # Pull in the GKE resource profiles from sub-chart file kubeai/values-gke.yaml so that GKE ready profiles
+            # are available for model selection above.
+            # NOTE: The spot allocation strategy IS enabled by default for cai-redteam profiles because the cost
+            # advantages make sense for demos and workshops where spot limitations make sense, but removal of the
+            # gke-spot selector may be more suitable for production workloads where guaranteed availability is a
+            # requirement. https://docs.cloud.google.com/kubernetes-engine/docs/concepts/spot-vms#overview
+            resourceProfiles:
+              nvidia-gpu-l4:
+                nodeSelector:
+                  cloud.google.com/gke-accelerator: "nvidia-l4"
+                  cloud.google.com/gke-spot: "true"
+              nvidia-gpu-h100:
+                nodeSelector:
+                  cloud.google.com/gke-accelerator: "nvidia-h100-80gb"
+                  cloud.google.com/gke-spot: "true"
+              nvidia-gpu-a100-80gb:
+                nodeSelector:
+                  cloud.google.com/gke-accelerator: "nvidia-a100-80gb"
+                  cloud.google.com/gke-spot: "true"
+              nvidia-gpu-a100-40gb:
+                nodeSelector:
+                  cloud.google.com/gke-accelerator: "nvidia-tesla-a100"
+                  cloud.google.com/gke-spot: "true"
+              google-tpu-v5e-1x1:
+                imageName: google-tpu
+                limits:
+                  google.com/tpu: 1
+                nodeSelector:
+                  cloud.google.com/gke-tpu-accelerator: tpu-v5-lite-podslice
+                  cloud.google.com/gke-tpu-topology: "1x1"
+                  cloud.google.com/gke-spot: "true"
+              google-tpu-v5e-2x2:
+                imageName: google-tpu
+                limits:
+                  google.com/tpu: 1
+                nodeSelector:
+                  cloud.google.com/gke-tpu-accelerator: tpu-v5-lite-podslice
+                  cloud.google.com/gke-tpu-topology: "2x2"
+                  cloud.google.com/gke-spot: "true"
+              google-tpu-v5e-2x4:
+                imageName: google-tpu
+                limits:
+                  google.com/tpu: 1
+                nodeSelector:
+                  cloud.google.com/gke-tpu-accelerator: tpu-v5-lite-podslice
+                  cloud.google.com/gke-tpu-topology: "2x4"
+                  cloud.google.com/gke-spot: "true"
+            cacheProfiles:
+              standard-filestore:
+                sharedFilesystem:
+                  storageClassName: "standard-rwx"
+              premium-filestore:
+                sharedFilesystem:
+                  storageClassName: "premium-rwx"
+          # The values below are not directly exposed in upstream cai-redteam, but are in the included
+          # prometheus-prefect-exporter sub-chart and need to be changed if using a private registry and enabled.
+          prometheus-prefect-exporter:
+            image:
+              repository: prefecthq/prometheus-prefect-exporter # kpt-set: ${f5-ai-private-image-repository-prefix}prefecthq/prometheus-prefect-exporter
+            prefectApiUrl: http://prefect-server.f5-ai-redteam.svc.cluster.local:4200/api # kpt-set: http://prefect-server.${cai-redteam-namespace}.svc.cluster.local:4200/api

@@ -1,0 +1,42 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: f5-ai-cai-scanner
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: |-
+    Provides a package for deploying F5 AI Guardrails scanner component.
+  emails:
+    - m.emes@f5.com
+  license: Apache-2.0
+  keywords:
+    - f5 ai guardrails
+    - ai
+    - guardrails
+    - scanner
+pipeline:
+  mutators:
+    # Apply deployment specific values from apply-setters.yaml.
+    - image: ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest
+      configPath: apply-setters.yaml
+    # Render the Helm chart as manifest.
+    - image: ghcr.io/krm-functions/render-helm-chart:latest
+    # Remove resources that are annotated as local-config.
+    - image: ghcr.io/kptdev/krm-functions-catalog/remove-local-config-resources:latest
+    # Remove resource labels that imply the deployment is managed by Helm.
+    - image: ghcr.io/kptdev/krm-functions-catalog/starlark:latest
+      configPath: label-cleanup.yaml
+    # Reset the namespace of all resources to the value in package-context.yaml.
+    - image: ghcr.io/kptdev/krm-functions-catalog/set-namespace:latest
+      configPath: package-context.yaml
+    # NOTE: If CRDs are included in the generated manifests the set-namespace function will add an erroneous webhook
+    # conversion entry to the Model CRD (see https://github.com/kptdev/kpt/issues/3560 for details). This starlark
+    # script will remove the conversion webhook from any CRDs in the stream.
+    - image: ghcr.io/kptdev/krm-functions-catalog/starlark:latest
+      configPath: crd-remove-webhook.yaml
+    # Add other local pipeline mutators as needed.
+  validators:
+    - image: ghcr.io/kptdev/krm-functions-catalog/kubeconform:latest
+      configMap:
+        strict: 'true'

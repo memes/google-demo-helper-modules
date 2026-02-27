@@ -1,0 +1,65 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: RenderHelmChart
+metadata:
+  name: f5-ai-cai-moderator
+helmCharts:
+  - chartArgs:
+      name: cai-moderator
+      version: 1.4.13
+      repo: oci://harbor.calypsoai.app/calypsoai
+      auth:
+        kind: Secret
+        name: cai-harbor-credentials
+    templateOptions:
+      releaseName: cai-moderator
+      namespace: f5-ai-moderator # kpt-set: ${cai-moderator-namespace}
+      includeCRDs: false
+      values:
+        valuesInline:
+          image:
+            repository: harbor.calypsoai.app/calypsoai/cai_moderator # kpt-set: ${f5-ai-private-image-repository-prefix}harbor.calypsoai.app/calypsoai/cai_moderator
+          # NOTE: An imagePullSecret is not needed when pulling from a private GAR repo with access managed through
+          # IAM. Remove if relying on regcreds from upstream chart.
+          imagePullSecrets: []
+          # NOTE: These selectors ensure the cai-moderator pods in an Autopilot GKE cluster get a dedicated C4 node
+          # each. Change as needed, or for Standard GKE node pool selection.
+          nodeSelector:
+            cloud.google.com/machine-family: c4
+            cloud.google.com/compute-class: Performance
+          env:
+            # The next entry will need to be modified if cai-scanner service is using a different namespace than the
+            # default of f5-ai-scanner.
+            CAI_MODERATOR_SCANNER_SERVER_URL: http://cai-scanner.f5-ai-scanner.svc.cluster.local/openai/v1 # kpt-set: http://cai-scanner.${cai-scanner-namespace}.svc.cluster.local/openai/v1
+            # If this package is deployed to a namespace other than the default of f5-ai-moderator the next line will need
+            # to change to match.
+            JAVA_OPTS_APPEND: -Djgroups.dns.query=cai-moderator-headless.f5-ai-moderator.svc.cluster.local # kpt-set: -Djgroups.dns.query=cai-moderator-headless.${cai-moderator-namespace}.svc.cluster.local
+            #
+            # The following entries are dependent on values/secrets created by IaC pipelines, and change with each fresh
+            # deployment, and are marked with setters to facilitate updating in an automated pipeline.
+            CAI_MODERATOR_BASE_URL: https://cai-moderator.site.lan # kpt-set: ${cai-moderator-console-base-url}
+            CAI_MODERATOR_DB_ADMIN_USERNAME: "" # kpt-set: ${cai-moderator-db-admin-username}
+            CAI_MODERATOR_DB_HOST: cai-moderator-postgres-postgresql.f5-ai-moderator.svc.cluster.local # kpt-set: ${cai-moderator-db-host}
+            CAI_MODERATOR_DEFAULT_RED_TEAM_ENABLED: true # If redteam to be installed
+            # The next entry will need to be modified if cai-scanner service is using a different namespace than the
+            # default of f5-ai-scanner.
+            CAI_MODERATOR_INTERNAL_URL: http://cai-moderator.f5-ai-moderator.svc.cluster.local:5500 # kpt-set: http://cai-moderator.${cai-moderator-namespace}.svc.cluster.local:5500
+            CAI_MODERATOR_JOB_MANAGER_API_URL: http://prefect-server.f5-ai-redteam.svc.cluster.local:4200/api # kpt-set: http://prefect-server.${cai-redteam-namespace}.svc.cluster.local:4200/api
+            CAI_MODERATOR_JOB_MANAGER_IMAGE: harbor.calypsoai.app/calypsoai/cai_workflows # kpt-set: ${f5-ai-private-image-repository-prefix}harbor.calypsoai.app/calypsoai/cai_workflows
+            # The next entry will need to be modified if cai-redteam-worker service is using a different namespace than
+            # the default of f5-ai-redteam.
+            CAI_MODERATOR_RED_TEAM_SCORER_URL: http://cai-redteam-worker.f5-ai-redteam.svc.cluster.local # kpt-set: http://cai-redteam-worker.${cai-redteam-namespace}.svc.cluster.local
+            CAI_MODERATOR_RED_TEAM_SCORER_MODEL: cai-mistral-nemo-instruct-2407
+            CAI_WORKFLOWS_VALIDATE_WORKFLOW_URL: true # kpt-set: ${f5-ai-workflow-enabled}
+          secrets:
+            # NOTE: The secrets are listed here with default values to ensure the chart adds an entry when building
+            # manifests; the intent is that these are populated from a Secret Manager secret at runtime. If that is not
+            # the case they should be set to correct values for the environment.
+            CAI_MODERATOR_AUTH_IDP_CLIENT_ID: ""
+            CAI_MODERATOR_AUTH_IDP_CLIENT_SECRET: ""
+            CAI_MODERATOR_AUTH_IDP_ISSUER: ""
+            CAI_MODERATOR_DB_ADMIN_PASSWORD: ""
+            CAI_MODERATOR_DB_MODERATOR_PASSWORD: "moderator"
+            CAI_MODERATOR_DEFAULT_LICENSE: ""
+            CAI_MODERATOR_EMAIL_PASSWORD: ""
+            CAI_MODERATOR_EMAIL_USER: ""
+            CAI_MODERATOR_JOB_MANAGER_ENCRYPTION_KEY: "ISJ9GCvWB3l1YUXjw4jvTeuFDHlcsD_W77VvM9QpLgE="

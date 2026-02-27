@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apply-setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+# spell-checker: disable
+data:
+  # The Secret Manager secret identifier that contains the JSON values for cai-moderator-auth secret.
+  cai-moderator-auth-secret-id: projects/PROJECT_ID/secrets/SECRET_ID
+  # The name of the Cloud Armor policy to apply to Gateway integration; if not used set to blank and remove backend.yaml
+  # declaration before rendering.
+  cai-moderator-cloud-armor-security-policy: f5-ai-cloud-armor-security-policy
+  # Override the default URL for the F5 AI GUI.
+  cai-moderator-console-base-url: https://cai-moderator.site.lan
+  # Override to use a different PostgreSQL admin account.
+  cai-moderator-db-admin-username: ""
+  # Override to use a Cloud SQL PostgreSQL instance or other out of cluster instance.
+  cai-moderator-db-host: cai-moderator-postgres-postgresql.cai-moderator.svc.cluster.local
+  # The cai-moderator component interacts with itself, and other F5 AI components through fully-qualified service names;
+  # update these to match the namespace for each component as necessary.
+  cai-moderator-namespace: f5-ai-moderator
+  cai-redteam-namespace: f5-ai-redteam
+  cai-scanner-namespace: f5-ai-scanner
+  # If workflows component (part of F5 AI Red Team) will not be deployed change to false.
+  f5-ai-workflow-enabled: true
+  # An optional prefix to add to select image paths to pull from private Artifact Registry (or other). E.g. if this
+  # value is 'my-private-repo.example.com/' the cai_moderator image will be pulled from
+  # 'my-private-repo.example.com/harbor.calypsoai.app/calypsoai/cai_moderator', etc.
+  f5-ai-private-image-repository-prefix: ""
+  # This package will declare an integration with an existing Gateway; these three values are used to reference the
+  # Gateway and listener to which an HTTPRoute will be attached.
+  shared-gateway-name: cluster-gw
+  shared-gateway-namespace: shared-services
+  shared-gateway-listener-name: f5-ai
