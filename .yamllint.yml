@@ -1,20 +1,33 @@
 ---
 extends: default
 
-# Some upstream manifests shouldn't be linted
+# Don't impose these rules on copies of upstream packages
 ignore:
-  - applications/**/upstream*/**/*.yaml
-  - applications/**/upstream*/**/*.yml
+  - packages/**/upstream*/**/*.yaml
+  - packages/**/upstream*/**/*.yml
 
 rules:
   line-length:
     max: 120
+    ignore:
+      # Embedded helm charts are longer than 120 chars
+      - packages/**/helm-chart.yaml
+      # Starlark sources often contain lines longer than 120 chars
+      - packages/**/crd-remove-webhook.yaml
+      - packages/**/label-cleanup.yaml
+      - packages/**/secrets-sync-generator*.yaml
   document-start:
     # Kpt will remove leading '---' post-processing
-    ignore: |
-      applications/**/*.yaml
-      applications/**/Kptfile
+    ignore:
+      - packages/**/*.yaml
+      - packages/**/Kptfile
   comments:
     # Kpt will reformat inline kpt-set to have a single space before comment
-    ignore: |
-      applications/ollama/ollama.yaml
+    ignore:
+      - packages/**/*.yaml
+  empty-lines:
+    ignore:
+      # Starlark source strings use empty lines for clarity
+      - packages/**/crd-remove-webhook.yaml
+      - packages/**/label-cleanup.yaml
+      - packages/**/secrets-sync-generator*.yaml

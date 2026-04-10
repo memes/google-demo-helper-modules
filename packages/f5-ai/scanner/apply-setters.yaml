@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apply-setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+# spell-checker: disable
+data:
+  # The upstream helm chart includes KubeAI Model CRD that can be installed as part of this Kpt pipeline, but it is
+  # recommended that a separate action installs the CRD as a pre-requisite to ensure it is available in cluster before
+  # models are declared.
+  cai-scanner-enable-crds: "false"
+  # The cai-scanner target namespace.
+  cai-scanner-namespace: f5-ai-scanner
+  # The name of the KubeAI resoruce profile that will be used for Scanner models.
+  cai-scanner-model-resource-profile: nvidia-gpu-l4:1
+  # An optional prefix to add to select image paths to pull from private Artifact Registry (or other). E.g. if this
+  # value is 'my-private-repo.example.com/' the cai_scanner image will be pulled from
+  # 'my-private-repo.example.com/harbor.calypsoai.app/calypsoai/cai_scanner', etc.
+  f5-ai-private-image-repository-prefix: ""
