@@ -84,7 +84,7 @@ helm chart.
 
       ```shell
       (cd f5-ai-moderator && \
-          kpt fn eval ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest --fn-config ./apply-setters.yaml)
+          kpt fn eval --image ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest --fn-config ./apply-setters.yaml)
       ```
 
       > NOTE: Ideally, this step is repeated every time values in [apply-setters.yaml] changes. The declared `kpt`
@@ -93,7 +93,7 @@ helm chart.
 
    1. Review [helm-chart.yaml]
 
-      Step 2 will perform value substitutions for simple, common changes seen in most deployments, but is unsuitable
+      Step 1 will perform value substitutions for simple, common changes seen in most deployments, but is unsuitable
       for structured entries or configuration options that are rarely changed. You should examine the declared values
       and make any necessary changes.
 
@@ -149,7 +149,7 @@ helm chart.
 
    1. Delete the files [secrets-sync-generator.yaml] and [secrets-sync.yaml]
 
-1. Add other local [Kptfile] pipeline mutators
+1. Review [Kptfile] and add other local pipeline mutators
 
    Other mutators should be appended to the end of the existing `pipeline` declaration, if needed.
    See [Kpt function catalog](https://catalog.kpt.dev/) for details.

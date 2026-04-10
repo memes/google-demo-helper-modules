@@ -8,6 +8,10 @@ metadata:
 data:
   # The Secret Manager secret identifier that contains the JSON values for cai-moderator-auth secret.
   cai-moderator-auth-secret-id: projects/PROJECT_ID/secrets/SECRET_ID
+  # Set to true if a Redis 7.2-compatible cache is provisioned.
+  cai-moderator-cache-enabled: "true"
+  # The hostname or IP address of the Redis 7.2-compatible cache.
+  cai-moderator-cache-host: 198.18.16.4
   # The name of the Cloud Armor policy to apply to Gateway integration; if not used set to blank and remove backend.yaml
   # declaration before rendering.
   cai-moderator-cloud-armor-security-policy: f5-ai-cloud-armor-security-policy
@@ -23,7 +27,9 @@ data:
   cai-redteam-namespace: f5-ai-redteam
   cai-scanner-namespace: f5-ai-scanner
   # If workflows component (part of F5 AI Red Team) will not be deployed change to false.
-  f5-ai-workflow-enabled: true
+  f5-ai-workflow-enabled: "true"
+  # Set to true if any workflows will use connections that are private IPs or resolve to private IPs.
+  f5-ai-workflow-private-url-enabled: "true"
   # An optional prefix to add to select image paths to pull from private Artifact Registry (or other). E.g. if this
   # value is 'my-private-repo.example.com/' the cai_moderator image will be pulled from
   # 'my-private-repo.example.com/harbor.calypsoai.app/calypsoai/cai_moderator', etc.

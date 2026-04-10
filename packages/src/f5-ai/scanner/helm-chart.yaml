@@ -30,7 +30,7 @@ helmCharts:
             nodeSelector:
               cloud.google.com/compute-class: Balanced
             crds:
-              enabled: false # kpt-set: ${cai-scanner-enable-crds}
+              enabled: false # kpt-set: ${cai-redteam-enable-crds}
             # NOTE: An imagePullSecret is not needed when pulling from a private GAR repo with access managed through
             # IAM. Remove if relying on regcreds from upstream chart.
             imagePullSecrets: []

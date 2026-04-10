@@ -6,13 +6,13 @@
   "bootstrap-sha": "1b45a406fb74c2266a7e1a4e5de59c4ca98b609b",
   "packages": {
     "packages/f5-ai/moderator": {
-      "component": "f5-ai-moderator"
+      "component": "packages/f5-ai/moderator"
     },
     "packages/f5-ai/scanner": {
-      "component": "f5-ai-scanner"
+      "component": "packages/f5-ai/scanner"
     },
     "packages/f5-ai/redteam": {
-      "component": "f5-ai-redteam"
+      "component": "packages/f5-ai/redteam"
     }
   }
 }

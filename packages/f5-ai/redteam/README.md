@@ -83,7 +83,7 @@ Provides a [Kpt] package for deploying F5 AI Red Team components from manifests 
 
       ```shell
       (cd f5-ai-redteam && \
-          kpt fn eval ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest --fn-config ./apply-setters.yaml)
+          kpt fn eval --image ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest --fn-config ./apply-setters.yaml)
       ```
 
       > NOTE: Ideally, this step is repeated every time values in [apply-setters.yaml] changes. The declared `kpt`
@@ -92,7 +92,7 @@ Provides a [Kpt] package for deploying F5 AI Red Team components from manifests 
 
    1. Review [helm-chart.yaml]
 
-      Step 2 will perform value substitutions for simple, common changes seen in most deployments, but is unsuitable
+      Step 1 will perform value substitutions for simple, common changes seen in most deployments, but is unsuitable
       for structured entries or configuration options that are rarely changed. You should examine the declared values
       and make any necessary changes.
 
@@ -150,7 +150,7 @@ Provides a [Kpt] package for deploying F5 AI Red Team components from manifests 
    1. Delete the files [secrets-sync-generator-cai-workflows-auth.yaml],
       [secrets-sync-generator-prefect-server-auth.yaml], and [secrets-sync.yaml]
 
-1. Add other local [Kptfile] pipeline mutators
+1. Review [Kptfile] and add other local pipeline mutators
 
    Other mutators should be appended to the end of the existing `pipeline` declaration, if needed.
    See [Kpt function catalog](https://catalog.kpt.dev/) for details.

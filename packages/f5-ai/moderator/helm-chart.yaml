@@ -51,7 +51,11 @@ helmCharts:
             # the default of f5-ai-redteam.
             CAI_MODERATOR_RED_TEAM_SCORER_URL: http://cai-redteam-worker.f5-ai-redteam.svc.cluster.local # kpt-set: http://cai-redteam-worker.${cai-redteam-namespace}.svc.cluster.local
             CAI_MODERATOR_RED_TEAM_SCORER_MODEL: cai-mistral-nemo-instruct-2407
+            CAI_MODERATOR_ALLOW_WORKFLOW_PRIVATE_URL: true # kpt-set: ${f5-ai-workflow-private-url-enabled}
             CAI_WORKFLOWS_VALIDATE_WORKFLOW_URL: true # kpt-set: ${f5-ai-workflow-enabled}
+            CAI_MODERATOR_CACHE_ENABLED: true # kpt-set: ${cai-moderator-cache-enabled}
+            CAI_MODERATOR_CACHE_HOST: cache-host # kpt-set: ${cai-moderator-cache-host}
+            CAI_MODERATOR_CACHE_PORT: 6379
           secrets:
             # NOTE: The secrets are listed here with default values to ensure the chart adds an entry when building
             # manifests; the intent is that these are populated from a Secret Manager secret at runtime. If that is not

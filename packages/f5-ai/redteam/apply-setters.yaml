@@ -23,4 +23,4 @@ data:
   # An optional prefix to add to select image paths to pull from private Artifact Registry (or other). E.g. if this
   # value is 'my-private-repo.example.com/' the kubeai image will be pulled from
   # 'my-private-repo.example.com/harbor.calypsoai.app/calypsoai/kubeai', etc.
-  f5-ai-private-image-repository-prefix: us-docker.pkg.dev/f5-gcs-4138-sales-cloudnext25/ai-demo-oci/
+  f5-ai-private-image-repository-prefix: ""
