@@ -1,0 +1,26 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: RenderHelmChart
+metadata:
+  name: gateway-api-inference-extension-inference-pool
+helmCharts:
+  - chartArgs:
+      name: inferencepool
+      version: v1.4.0
+      repo: oci://registry.k8s.io/gateway-api-inference-extension/charts
+    templateOptions:
+      releaseName: inference-pool # kpt-set: ${inference-pool-name}
+      namespace: shared-services # kpt-set: ${inference-pool-namespace}
+      includeCRDs: false
+      values:
+        valuesInline:
+          inferencePool:
+            modelServers:
+              matchLabels:
+                app.kubernetes.io/name: # kpt-set: ${inference-pool-name}
+          inferenceExtension:
+            monitoring:
+              gke:
+                enabled: true # kpt-set: ${inference-pool-monitoring-enabled}
+          provider:
+            name: gke
+            autopilot: true # kpt-set: ${inference-pool-cluster-is-autopilot}

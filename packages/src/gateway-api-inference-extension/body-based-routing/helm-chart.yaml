@@ -1,0 +1,22 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: RenderHelmChart
+metadata:
+  name: gateway-api-inference-extension-bbr
+helmCharts:
+  - chartArgs:
+      name: body-based-routing
+      version: v1.4.0
+      repo: oci://registry.k8s.io/gateway-api-inference-extension/charts
+    templateOptions:
+      releaseName: shared-services # kpt-set: ${bbr-name}
+      namespace: shared-services # kpt-set: ${bbr-namespace}
+      includeCRDs: false
+      values:
+        valuesInline:
+          provider:
+            name: gke
+          bbr:
+            multiNamespace: true # kpt-set: ${bbr-multi-namespace-support}
+            plugins: []
+          inferenceGateway:
+            name: cluster-gw # kpt-set: $shared-gateway-name}
