@@ -1,8 +1,0 @@
-kind: ConfigMap
-apiVersion: v1
-metadata: # kpt-merge: nginx-ingress/nginx-config
-  name: nginx-config
-  namespace: nginx-ingress
-  annotations:
-    internal.kpt.dev/upstream-identifier: '|ConfigMap|nginx-ingress|nginx-config'
-data: null
