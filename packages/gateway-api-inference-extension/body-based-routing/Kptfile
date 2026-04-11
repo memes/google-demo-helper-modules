@@ -1,0 +1,46 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: body-based-routing
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: |-
+    Provides a package for Gateway API Inference Extension to support Body Based Routing using the model name embedded
+    in JSON payload.
+  emails:
+    - m.emes@f5.com
+  license: Apache-2.0
+  keywords:
+    - gateway api inference extension
+    - gateway
+    - inference
+    - bbr
+    - body routing
+    - body-based routing
+pipeline:
+  mutators:
+    # Apply deployment specific values from apply-setters.yaml.
+    - image: ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest
+      configPath: apply-setters.yaml
+    # Render the Helm chart as manifest.
+    - image: ghcr.io/krm-functions/render-helm-chart:latest
+    # Remove resources that are annotated as local-config.
+    - image: ghcr.io/kptdev/krm-functions-catalog/remove-local-config-resources:latest
+    # Change the image
+    - image: ghcr.io/kptdev/krm-functions-catalog/set-image:latest
+      configMap:
+        name: registry.k8s.io/gateway-api-inference-extension/bbr
+        newName: registry.k8s.io/gateway-api-inference-extension/bbr
+        newTag: v1.4.0
+    # Remove resource labels that imply the deployment is managed by Helm.
+    - image: ghcr.io/kptdev/krm-functions-catalog/starlark:latest
+      configPath: label-cleanup.yaml
+    # Reset the namespace of all resources to the value in package-context.yaml.
+    - image: ghcr.io/kptdev/krm-functions-catalog/set-namespace:latest
+      configPath: package-context.yaml
+    # Add other local pipeline mutators as needed.
+  validators:
+    - image: ghcr.io/kptdev/krm-functions-catalog/kubeconform:latest
+      configMap:
+        strict: 'true'

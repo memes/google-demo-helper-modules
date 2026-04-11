@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apply-setters
+  annotations:
+    config.kubernetes.io/local-config: "true"
+# spell-checker: disable
+data:
+  # Set to true if the body-based routing extension should discover configurations in namespaces other than the one to
+  # which it was deployed.
+  bbr-multi-namespace-support: true
+  # The name to assign to body-based-routing deployment,
+  bbr-name: shared-services
+  # The target namespace for body-based routing extension; usually matches the namespace of the Gateway.
+  bbr-namespace: shared-services
+  # This is the name of Gateway to which a GCPRoutingExtension will be attached.
+  shared-gateway-name: cluster-gw

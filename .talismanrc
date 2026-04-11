@@ -106,3 +106,11 @@ fileignoreconfig:
   checksum: 480d276f29bc240fa0f838c0b06d67af1280b77830039a55829bae007f8e670f
 - filename: packages/f5-ai/redteam/README.md
   checksum: 8496a353b577e48684c30d9d3ebdd6a12f1f2f282faafe4ee2f8d2231575f29f
+- filename: packages/gateway-api-inference-extension/body-based-routing/helm-chart.yaml
+  checksum: 0d533157e942d562966d2b509737e8f2e04bc28d6b3cd3f85845354e5a5f6225
+- filename: packages/gateway-api-inference-extension/inference-pool/helm-chart.yaml
+  checksum: 870ba184f2e23dcbef2f8bc60bd411e97bdc750222e7d4323a8872f9cb61bce5
+- filename: packages/gateway-api-inference-extension/inference-pool/label-cleanup.yaml
+  checksum: b78e1a9980984444c1a06c460930ee9c88f5a22763cf3d37fe8fe045c20662c9
+- filename: packages/gateway-api-inference-extension/body-based-routing/label-cleanup.yaml
+  checksum: d53cb191e10ac34bf39283bab0de95f2009b82a2d4a72b2d5493fafa2fe40135

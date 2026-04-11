@@ -13,6 +13,12 @@
     },
     "packages/f5-ai/redteam": {
       "component": "packages/f5-ai/redteam"
+    },
+    "packages/gateway-api-inference-extension/body-based-routing": {
+      "component": "packages/gateway-api-inference-extension/redteam"
+    },
+    "packages/gateway-api-inference-extension/inference-pool": {
+      "component": "packages/f5-ai/redteam"
     }
   }
 }
