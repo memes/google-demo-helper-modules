@@ -1,3 +1,8 @@
 {
-  ".": "0.0.1"
+  ".": "0.0.1",
+  "packages/f5-ai/moderator": "0.1.0",
+  "packages/f5-ai/scanner": "0.1.0",
+  "packages/f5-ai/redteam": "0.1.0",
+  "packages/gateway-api-inference-extension/body-based-routing": "0.1.0",
+  "packages/gateway-api-inference-extension/inference-pool": "0.1.0"
 }
