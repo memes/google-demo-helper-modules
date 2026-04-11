@@ -7,4 +7,4 @@ config:
 gitignore: true
 
 ignores:
-  - CHANGELOG.md
+  - "**/CHANGELOG.md"
