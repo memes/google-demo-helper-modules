@@ -79,7 +79,7 @@ fileignoreconfig:
 - filename: packages/f5-ai/redteam/secrets-sync.yaml
   checksum: d7bb155073dbce76ce9c9efa909aa030f045ad33afc7579bbfd0fca8dd7c060c
 - filename: packages/f5-ai/moderator/Kptfile
-  checksum: 36194c64a5d9b7be67cae27caed44be4211a3ac2102b4b9a2cb3567160574f52
+  checksum: 2ebbb9b0745af4a0636d7d30e671d0e96089f04ba2a0963cbbe2ed8f8d0aa4ee
 - filename: packages/src/starlark/label-cleanup.yaml
   checksum: e33d3395a2876710eb862f3547a365baac3ab21c640debfe9f6e1c5111466274
 - filename: packages/f5-ai/redteam/secrets-sync-generator-cai-workflows-auth.yaml
@@ -91,7 +91,7 @@ fileignoreconfig:
 - filename: packages/f5-ai/moderator/label-cleanup.yaml
   checksum: 287129115b76af567468ac2ab7d9066e1ad4cbe694b19691ca617dd1e602e511
 - filename: packages/f5-ai/moderator/README.md
-  checksum: 0f94b85d5d76c6fb4ba58a89e5bede552c75d0536d1167ae31246c0629e6f06d
+  checksum: 55d9b37c2b1dabb4978a4abf6d49ea349fcf7d23157720d28810079f2fb93672
 - filename: packages/src/starlark/secrets-sync-generator.yaml
   checksum: 95fcdae3d308814097c71d60593b19fd725d7680e78f07a88e7097c514d1b152
 - filename: packages/f5-ai/redteam/apply-setters.yaml
@@ -101,11 +101,11 @@ fileignoreconfig:
 - filename: packages/f5-ai/redteam/label-cleanup.yaml
   checksum: 89598178ea45b33010c9e47e95fe9d1745d8bd70413d23e03af44bb2e7f3ed9b
 - filename: packages/f5-ai/redteam/Kptfile
-  checksum: 43574464b15baae257237df0c412a7d1567fc4db2b5bd9ab11a80251e2980c13
+  checksum: 6d4bf2fe4f2a92ffe6a32688e2bd90f4abfe47844be23e1b34f8882b2d45274e
 - filename: packages/f5-ai/moderator/apply-setters.yaml
   checksum: 480d276f29bc240fa0f838c0b06d67af1280b77830039a55829bae007f8e670f
 - filename: packages/f5-ai/redteam/README.md
-  checksum: 8496a353b577e48684c30d9d3ebdd6a12f1f2f282faafe4ee2f8d2231575f29f
+  checksum: 863f183e82dcb8688c01cfe132e0fd70d0a8bda2b6485471838e4291a2a7290d
 - filename: packages/gateway-api-inference-extension/body-based-routing/helm-chart.yaml
   checksum: 0d533157e942d562966d2b509737e8f2e04bc28d6b3cd3f85845354e5a5f6225
 - filename: packages/gateway-api-inference-extension/inference-pool/helm-chart.yaml
@@ -114,3 +114,17 @@ fileignoreconfig:
   checksum: b78e1a9980984444c1a06c460930ee9c88f5a22763cf3d37fe8fe045c20662c9
 - filename: packages/gateway-api-inference-extension/body-based-routing/label-cleanup.yaml
   checksum: d53cb191e10ac34bf39283bab0de95f2009b82a2d4a72b2d5493fafa2fe40135
+- filename: packages/gateway-api-inference-extension/inference-pool/Kptfile
+  checksum: 10f48e7097c88a91ebf8f28a2c365e6610b8763f4b5c458fa18fdf502eafc3f2
+- filename: packages/f5-ai/scanner/Kptfile
+  checksum: c9c5a5cf25b7049b315eb5a2d828ab574253a66e504e630b60014b22a4ad5bec
+- filename: packages/gateway-api-inference-extension/body-based-routing/README.md
+  checksum: 6641a110bea0f16380e71cdc72991dab63097b36b5f8985cf7f385992c08eb2c
+- filename: packages/gateway-api-inference-extension/inference-pool/README.md
+  checksum: 1206a54cda705d47b5872edfd6f0e626b51a2e015b2f84daa1fb0a520bcf917c
+- filename: packages/gateway-api-inference-extension/body-based-routing/Kptfile
+  checksum: 7ca9e47082d3999d30c946294643d8ff514b943f9d30a0e84ff86099c7dc8444
+- filename: packages/f5-ai/scanner/README.md
+  checksum: 4b8383b2c8bcf76796d071615a89e3e7590756a6749efd52706edaa4699b1f81
+- filename: packages/Makefile
+  checksum: 1b08a1083e0c21d51a0a4699721114066a9e525231cec79927c7ed7c08485300

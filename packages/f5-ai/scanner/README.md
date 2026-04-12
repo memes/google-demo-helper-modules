@@ -83,7 +83,8 @@ Provides a [Kpt] package for deploying F5 AI Guardrails components from manifest
 
       ```shell
       (cd f5-ai-scanner && \
-          kpt fn eval --image ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest --fn-config ./apply-setters.yaml)
+          kpt fn eval --fn-config ./apply-setters.yaml \
+              --image ghcr.io/kptdev/krm-functions-catalog/apply-setters@sha256:1d84fb5c0650036a2cebba76f7839b5fa30fa315a8104595e58c40485d678f38)
       ```
 
       > NOTE: Ideally, this step is repeated every time values in [apply-setters.yaml] changes. The declared `kpt`
