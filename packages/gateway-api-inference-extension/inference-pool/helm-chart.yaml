@@ -4,6 +4,7 @@ metadata:
   name: gateway-api-inference-extension-inference-pool
   annotations:
     experimental.helm.sh/chart-sum/inferencepool: sha256:0171b24fc1f12ce943e1fd7f3ad8afbcc78b4520b7c752da86d0315a4993c81e
+    experimental.helm.sh/chart-sum: sha256:0171b24fc1f12ce943e1fd7f3ad8afbcc78b4520b7c752da86d0315a4993c81e
 helmCharts:
   - chartArgs:
       name: inferencepool
@@ -12,13 +13,12 @@ helmCharts:
     templateOptions:
       releaseName: inference-pool # kpt-set: ${inference-pool-name}
       namespace: shared-services # kpt-set: ${inference-pool-namespace}
-      includeCRDs: false
       values:
         valuesInline:
           inferencePool:
             modelServers:
               matchLabels:
-                app.kubernetes.io/name: # kpt-set: ${inference-pool-name}
+                app.kubernetes.io/name: inference-pool # kpt-set: ${inference-pool-name}
           inferenceExtension:
             monitoring:
               gke:

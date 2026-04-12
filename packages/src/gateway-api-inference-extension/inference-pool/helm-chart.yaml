@@ -16,7 +16,7 @@ helmCharts:
           inferencePool:
             modelServers:
               matchLabels:
-                app.kubernetes.io/name: # kpt-set: ${inference-pool-name}
+                app.kubernetes.io/name: inference-pool # kpt-set: ${inference-pool-name}
           inferenceExtension:
             monitoring:
               gke:
