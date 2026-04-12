@@ -23,7 +23,8 @@ gateway-api-inference-extension/inference-pool/helm-chart.yaml:
 		kustomize build -o "$${build_dir}" && \
 		rsync -avP "$(<D)/" "$${build_dir}/" && \
 		kpt fn source "$${build_dir}" | \
-			kpt fn eval - --network --image  ghcr.io/krm-functions/source-helm-chart:latest | \
+			kpt fn eval - --network \
+				--image ghcr.io/krm-functions/source-helm-chart@sha256:865232a46bca8e1294c64d0de35437e18936b049159d8329000b44fd4c84c99f | \
 			kpt fn sink "$${build_dir}/built" && \
 		cp "$${build_dir}/built/$(<F)" "$@"; \
 		rm -rf "$${build_dir}"

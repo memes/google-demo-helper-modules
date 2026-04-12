@@ -83,7 +83,8 @@ Provides a [Kpt] package for deploying F5 AI Red Team components from manifests 
 
       ```shell
       (cd f5-ai-redteam && \
-          kpt fn eval --image ghcr.io/kptdev/krm-functions-catalog/apply-setters:latest --fn-config ./apply-setters.yaml)
+          kpt fn eval --fn-config ./apply-setters.yaml
+              --image ghcr.io/kptdev/krm-functions-catalog/apply-setters@sha256:1d84fb5c0650036a2cebba76f7839b5fa30fa315a8104595e58c40485d678f38)
       ```
 
       > NOTE: Ideally, this step is repeated every time values in [apply-setters.yaml] changes. The declared `kpt`
@@ -129,7 +130,7 @@ Provides a [Kpt] package for deploying F5 AI Red Team components from manifests 
    1. Edit [Kptfile] and remove these entries from `pipeline`:
 
       ```yaml
-      - image: ghcr.io/kptdev/krm-functions-catalog/set-annotations:latest
+      - image: ghcr.io/kptdev/krm-functions-catalog/set-annotations@sha256:276281a244759692959c158a87d7884c0ce97fe6773377eafa5732c66137d945
         configMap:
           config.kubernetes.io/local-config: "true"
           selectors:
@@ -138,12 +139,12 @@ Provides a [Kpt] package for deploying F5 AI Red Team components from manifests 
       ```
 
       ```yaml
-      - image: ghcr.io/kptdev/krm-functions-catalog/starlark:latest
+      - image: ghcr.io/kptdev/krm-functions-catalog/starlark@sha256:bf378ebe32838ba1c0eb92c5551613d19dc40459f3e6cee405b957eb71287649
         configPath: secrets-sync-generator-cai-workflows-auth.yaml
       ```
 
       ```yaml
-      - image: ghcr.io/kptdev/krm-functions-catalog/starlark:latest
+      - image: ghcr.io/kptdev/krm-functions-catalog/starlark@sha256:bf378ebe32838ba1c0eb92c5551613d19dc40459f3e6cee405b957eb71287649
         configPath: secrets-sync-generator-prefect-server-auth.yaml
       ```
 
