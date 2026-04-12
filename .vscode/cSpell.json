@@ -20,6 +20,7 @@
         "gcrane",
         "globalconfigurations",
         "INITDB",
+        "kpt",
         "kptdev",
         "Kptfile",
         "kubeai",
@@ -49,6 +50,7 @@
         "tfvar",
         "tfvars",
         "transportservers",
+        "upgrader",
         "venv",
         "virtualserverroutes",
         "virtualservers"
