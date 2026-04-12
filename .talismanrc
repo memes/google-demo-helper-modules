@@ -73,7 +73,7 @@ fileignoreconfig:
 - filename: packages/f5-ai/scanner/helm-chart.yaml
   checksum: f7f36670da09d825795bcaf04c0253181ae2bb3b559b10829a82237f93c20f31
 - filename: packages/f5-ai/redteam/helm-chart.yaml
-  checksum: bd7caeb72945bbf6a7f6999f18cbd05fc3bb249d839885bedaa9ae97a07d4659
+  checksum: 0403e1a14abb3cfe3481deb7efee3063d57034f73855101558119865f22ae05b
 - filename: packages/f5-ai/redteam/secrets-sync-generator-prefect-server-auth.yaml
   checksum: ab2ea7c47cc765b0247e56a763faef2632532f184ccb6ec3d22c72d5ed96491e
 - filename: packages/f5-ai/redteam/secrets-sync.yaml

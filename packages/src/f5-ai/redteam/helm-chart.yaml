@@ -13,7 +13,7 @@ helmCharts:
     templateOptions:
       releaseName: cai-redteam
       namespace: f5-ai-redteam # kpt-set: ${cai-redteam-namespace}
-      includeCRDs: false # kpt-set: ${cai-redteam-enable-crds}
+      includeCRDs: false
       values:
         valuesInline:
           cai:
@@ -56,7 +56,7 @@ helmCharts:
               resourceProfile: nvidia-gpu-a100-40gb:1 # kpt-set: ${cai-redteam-model-resource-profile}
           kubeai:
             crds:
-              enabled: false # kpt-set: ${cai-scanner-enable-crds}
+              enabled: false
             # NOTE: An imagePullSecret is not needed when pulling from a private GAR repo with access managed through
             # IAM. Remove if relying on regcreds from upstream chart.
             imagePullSecrets: []

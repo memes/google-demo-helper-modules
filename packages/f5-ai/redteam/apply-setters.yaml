@@ -14,10 +14,6 @@ data:
   # update these to match the namespace for each component as necessary.
   cai-moderator-namespace: f5-ai-moderator
   cai-redteam-namespace: f5-ai-redteam
-  # The upstream helm chart includes KubeAI Model CRD that can be installed as part of this Kpt pipeline, but it is
-  # recommended that a separate action installs the CRD as a pre-requisite to ensure it is available in cluster before
-  # models are declared.
-  cai-redteam-enable-crds: "false"
   # The name of the KubeAI resoruce profile that will be used for Red Team models.
   cai-redteam-model-resource-profile: nvidia-gpu-a100-40gb:1
   # An optional prefix to add to select image paths to pull from private Artifact Registry (or other). E.g. if this
