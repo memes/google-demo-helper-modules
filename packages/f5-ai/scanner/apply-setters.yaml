@@ -6,10 +6,6 @@ metadata:
     config.kubernetes.io/local-config: "true"
 # spell-checker: disable
 data:
-  # The upstream helm chart includes KubeAI Model CRD that can be installed as part of this Kpt pipeline, but it is
-  # recommended that a separate action installs the CRD as a pre-requisite to ensure it is available in cluster before
-  # models are declared.
-  cai-scanner-enable-crds: "false"
   # The cai-scanner target namespace.
   cai-scanner-namespace: f5-ai-scanner
   # The name of the KubeAI resoruce profile that will be used for Scanner models.
