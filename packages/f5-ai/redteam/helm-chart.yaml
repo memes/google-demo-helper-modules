@@ -4,6 +4,7 @@ metadata:
   name: f5-ai-cai-redteam
   annotations:
     experimental.helm.sh/chart-sum/cai-redteam: sha256:c794160c1b3c3292e502d1fe73d91bfc7b6f2f0934b163842950cec0cec599a8
+    experimental.helm.sh/chart-sum: sha256:c794160c1b3c3292e502d1fe73d91bfc7b6f2f0934b163842950cec0cec599a8
 helmCharts:
   - chartArgs:
       name: cai-redteam
@@ -15,7 +16,6 @@ helmCharts:
     templateOptions:
       releaseName: cai-redteam
       namespace: f5-ai-redteam # kpt-set: ${cai-redteam-namespace}
-      includeCRDs: false # kpt-set: ${cai-redteam-enable-crds}
       values:
         valuesInline:
           cai:
@@ -58,7 +58,7 @@ helmCharts:
               resourceProfile: nvidia-gpu-a100-40gb:1 # kpt-set: ${cai-redteam-model-resource-profile}
           kubeai:
             crds:
-              enabled: false # kpt-set: ${cai-scanner-enable-crds}
+              enabled: false
             # NOTE: An imagePullSecret is not needed when pulling from a private GAR repo with access managed through
             # IAM. Remove if relying on regcreds from upstream chart.
             imagePullSecrets: []
@@ -84,19 +84,19 @@ helmCharts:
             resourceProfiles:
               nvidia-gpu-l4:
                 nodeSelector:
-                  cloud.google.com/gke-accelerator: "nvidia-l4"
+                  cloud.google.com/gke-accelerator: nvidia-l4
                   cloud.google.com/gke-spot: "true"
               nvidia-gpu-h100:
                 nodeSelector:
-                  cloud.google.com/gke-accelerator: "nvidia-h100-80gb"
+                  cloud.google.com/gke-accelerator: nvidia-h100-80gb
                   cloud.google.com/gke-spot: "true"
               nvidia-gpu-a100-80gb:
                 nodeSelector:
-                  cloud.google.com/gke-accelerator: "nvidia-a100-80gb"
+                  cloud.google.com/gke-accelerator: nvidia-a100-80gb
                   cloud.google.com/gke-spot: "true"
               nvidia-gpu-a100-40gb:
                 nodeSelector:
-                  cloud.google.com/gke-accelerator: "nvidia-tesla-a100"
+                  cloud.google.com/gke-accelerator: nvidia-tesla-a100
                   cloud.google.com/gke-spot: "true"
               google-tpu-v5e-1x1:
                 imageName: google-tpu
@@ -104,7 +104,7 @@ helmCharts:
                   google.com/tpu: 1
                 nodeSelector:
                   cloud.google.com/gke-tpu-accelerator: tpu-v5-lite-podslice
-                  cloud.google.com/gke-tpu-topology: "1x1"
+                  cloud.google.com/gke-tpu-topology: 1x1
                   cloud.google.com/gke-spot: "true"
               google-tpu-v5e-2x2:
                 imageName: google-tpu
@@ -112,7 +112,7 @@ helmCharts:
                   google.com/tpu: 1
                 nodeSelector:
                   cloud.google.com/gke-tpu-accelerator: tpu-v5-lite-podslice
-                  cloud.google.com/gke-tpu-topology: "2x2"
+                  cloud.google.com/gke-tpu-topology: 2x2
                   cloud.google.com/gke-spot: "true"
               google-tpu-v5e-2x4:
                 imageName: google-tpu
@@ -120,15 +120,15 @@ helmCharts:
                   google.com/tpu: 1
                 nodeSelector:
                   cloud.google.com/gke-tpu-accelerator: tpu-v5-lite-podslice
-                  cloud.google.com/gke-tpu-topology: "2x4"
+                  cloud.google.com/gke-tpu-topology: 2x4
                   cloud.google.com/gke-spot: "true"
             cacheProfiles:
               standard-filestore:
                 sharedFilesystem:
-                  storageClassName: "standard-rwx"
+                  storageClassName: standard-rwx
               premium-filestore:
                 sharedFilesystem:
-                  storageClassName: "premium-rwx"
+                  storageClassName: premium-rwx
           # The values below are not directly exposed in upstream cai-redteam, but are in the included
           # prometheus-prefect-exporter sub-chart and need to be changed if using a private registry and enabled.
           prometheus-prefect-exporter:

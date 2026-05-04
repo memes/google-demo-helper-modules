@@ -4,6 +4,7 @@ metadata:
   name: gateway-api-inference-extension-bbr
   annotations:
     experimental.helm.sh/chart-sum/body-based-routing: sha256:d8efdc2fc63d9bf5b337ed2f464a1679b68507d70a48cd0a33f7fe7d395adde8
+    experimental.helm.sh/chart-sum: sha256:d8efdc2fc63d9bf5b337ed2f464a1679b68507d70a48cd0a33f7fe7d395adde8
 helmCharts:
   - chartArgs:
       name: body-based-routing
@@ -12,7 +13,6 @@ helmCharts:
     templateOptions:
       releaseName: shared-services # kpt-set: ${bbr-name}
       namespace: shared-services # kpt-set: ${bbr-namespace}
-      includeCRDs: false
       values:
         valuesInline:
           provider:
