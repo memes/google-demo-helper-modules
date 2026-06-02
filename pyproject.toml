@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 # spell-checker: disable
 dependencies = [
-    "kubernetes>=35.0.0",
+    "kubernetes>=36.0.2",
     "pytest>=9.0.3",
     "pytest-cov>=7.0.0",
     "pytest-testinfra[paramiko]>=10.2.2",
